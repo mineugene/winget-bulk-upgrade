@@ -1,0 +1,25 @@
+{
+    "programs": [
+        "7zip.7zip",
+        "AdoptOpenJDK.OpenJDK.8",
+        "Avidemux.Avidemux",
+        "CPUID.CPU-Z",
+        "Discord.Discord",
+        "GIMP.GIMP",
+        "HandBrake.HandBrake",
+        "Inkscape.Inkscape",
+        "IrfanSkiljan.IrfanView",
+        "KDE.Kdenlive",
+        "Microsoft.WindowsTerminal",
+        "Mojang.MinecraftLauncher",
+        "Mozilla.Firefox",
+        "Mozilla.Thunderbird",
+        "NickeManarin.ScreenToGif",
+        "Notepad++.Notepad++",
+        "OBSProject.OBSStudio",
+        "Spotify.Spotify",
+        "Valve.Steam",
+        "VideoLAN.VLC",
+        "qBittorrent.qBittorrent"
+    ]
+}
