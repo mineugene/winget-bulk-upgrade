@@ -38,6 +38,14 @@ For example, `winget search --moniker git` results in finding 'Git.Git'. Therefo
 ```
 
 
+## Ideas
+- [ ] Create logger
+- [ ] Optimize successive runs by remembering recent package ID validations
+- [ ] Install/upgrade a number of packages in parallel
+- [ ] Install/upgrade by giving arguments instead of json
+- [ ] Convert script into [module](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-5.1)
+
+
 ## Notes
 - Unfortunately, using winget to install some programs (e.g. Visual Studio, Microsoft Teams, LibreOffice) triggers an **automatic system restart**. See [here](https://github.com/microsoft/winget-cli/issues/229
 ) to follow the GitHub issue thread. Make sure to **SAVE YOUR WORK** before running any `winget {install,upgrade}` commands.
