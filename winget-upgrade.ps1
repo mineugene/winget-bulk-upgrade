@@ -29,8 +29,20 @@ function Iterate-Async {
   param($Cmd, $ArgsList)
 
   $tasks = @()
-  foreach ($a in $ArgsList) {
-    $tasks += start-job -argumentlist $a -scriptblock $Cmd
+  $success = $false
+  try {
+    foreach ($a in $ArgsList) {
+      $tasks += start-job -argumentlist $a -scriptblock $Cmd
+    }
+    $success = $true
+  }
+  finally {
+    if ($success) {
+      write-host -nonewline "..."
+    } else {
+      write-host "ABORTING"
+      stop-job $tasks; remove-job $tasks
+    }
   }
   return $tasks
 }
@@ -38,7 +50,19 @@ function Iterate-Async {
 function Resolve-All {
   param($tasks)
 
-  wait-job -job $tasks | Out-Null
+  $success = $false
+  try {
+    wait-job -job $tasks | Out-Null
+    $success = $true
+  }
+  finally {
+    if ($success) {
+      write-host "DONE"
+    } else {
+      write-host "ABORTING"
+      stop-job $tasks; remove-job $tasks
+    }
+  }
   return ($tasks | % {receive-job $_.Id;remove-job $_.Id}) -split ' '
 }
 
@@ -113,20 +137,20 @@ if (
 
 write-header "Starting full upgrade"
 
-write-host -nonewline "resolving packages..."
+write-host -nonewline "resolving packages"
 $tasks_resolve = iterate-async -cmd $resolve_names -argslist $programs.programs
 $unresolved = resolve-all -tasks $tasks_resolve
-write-host "DONE"
+
 if ($unresolved.Length -gt 0) { 
   write-error -category NotInstalled `
     -message "$($unresolved.Item(0)) : target not found."
   exit 0xffffffff
 }
 
-write-host -nonewline "looking for conflicting packages..."
+write-host -nonewline "looking for conflicting packages"
 $tasks_exists = iterate-async -cmd $find_installed -argslist $programs.programs
 $installed = resolve-all -tasks $tasks_exists
-write-host "DONE"
+
 $new_programs = $programs.programs
 foreach ($prog_name in $installed) {
   # filter out programs already installed on system
