@@ -96,7 +96,7 @@ function WordWrap-List {
       $line_length = 0
     }
     $result.append("$word ") >$null
-    $line_length += $word.Length
+    $line_length += $word.Length + 1
   }
   return $result.tostring()
 }
