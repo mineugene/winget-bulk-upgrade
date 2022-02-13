@@ -6,8 +6,7 @@ winget-upgrade.ps1
 
 Author: https://github.com/mineugene
 DateCreated: 2022-02-12
-Description: verifies and installs/upgrades programs listed in
-  'winget-upgrade.json' and installs them one at a time.
+Description: verify and install/upgrade programs listed in `winget-upgrade.json`
 #>
 
 #region SCRIPTBLOCKS - atomic jobs to run asynchronously
