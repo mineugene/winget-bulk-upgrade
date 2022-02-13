@@ -21,7 +21,7 @@ This script asynchronously verifies the given package names with a `winget searc
 :exclamation: Save all your work before running this script. See [notes](#notes) below :exclamation:
 
 1. Update `winget-upgrade.json` with the exact package ID found using `winget search <pkg-name>`.
-For example,
+For example, `winget search git` shows the package ID is `Git.Git`. Therefore,
 ```json
 {
     "programs": [
